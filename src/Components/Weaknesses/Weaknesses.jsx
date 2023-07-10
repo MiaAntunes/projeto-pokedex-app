@@ -22,11 +22,13 @@ export const Weaknesses = ({ type }) => {
 
     return (
         <div>
-            {weak && weak.damage_relations.double_damage_from.map((damage) => {
+            {weak && weak.damage_relations.double_damage_from
+            .map((damage) => {
                 return (
                     <img src={getPokemonType(damage.name)} />
                 )
-            })}
+            })
+            }
         </div>
     )
 }
