@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 // import {useNavigate} from "react-router-dom"
 import { PokemonCard } from "../../Components/PokemonCard/PokemonCard";
 import { Input, Select } from "./PokeListStyle";
+import { LoadingMorePokemons } from "../../Components/LoadingMorePokemons/LoadingMorePokemons";
 
 export const PokeList = () => {
   const { pokemons } = useContext(globalContext);
@@ -12,6 +13,8 @@ export const PokeList = () => {
   const handleOpcaoChange = (event) => {
     setOpcaoSelecionada(event.target.value);
   };
+
+  console.log(pokemons)
 
   return (
     <div
@@ -30,9 +33,12 @@ export const PokeList = () => {
       <Select id="opcoes" value={opcaoSelecionada} onChange={handleOpcaoChange}>
         <option value="">Todos os tipos</option>
       </Select>
-      {pokemons.map((poke) => {
+      {pokemons.results.map((poke) => {
         return <PokemonCard pokemon={poke.name} />;
       })}
+      <LoadingMorePokemons
+        more={pokemons.next}
+      ><p>More Pokemons</p></LoadingMorePokemons>
     </div>
   );
 };
