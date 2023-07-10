@@ -1,4 +1,4 @@
-import banner from "../../assets/others/banner.jpg";
+import banner from "../../assets/others/BannerComplete.png";
 import { ArticleMain, Banner, ButtonAllPokemons, ContainerMain, H1, H2 } from "./HomePageStyle";
 
 export const HomePage = () => {
