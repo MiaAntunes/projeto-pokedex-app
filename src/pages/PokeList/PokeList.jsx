@@ -3,7 +3,7 @@ import {useContext} from "react"
 // import {useNavigate} from "react-router-dom"
 import { PokemonCard } from "../../Components/PokemonCard/PokemonCard"
 
-export const MainPage = () => {
+export const PokeList = () => {
     const {pokemons} = useContext(globalContext)
     
     return(
