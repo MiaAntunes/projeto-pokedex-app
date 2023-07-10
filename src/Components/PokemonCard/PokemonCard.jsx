@@ -34,6 +34,7 @@ export const PokemonCard = ({ pokemon }) => {
             <div>
               {pokemonCard.types.map((type)=>{
                 return<img
+                style={{display: "flex"}}
                 src={getPokemonType(type.type.name)}
                 />
               })}
