@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { goToPerfilPage } from "../../Router/Coordinator";
 import { useNavigate } from "react-router-dom";
 import { ContainerCard, Id, InfoCard, Name } from "./PokemonCardStyle";
+import { getPokemonType } from "../../Utils/getPokemonType";
 
 export const PokemonCard = ({ pokemon }) => {
   const [pokemonCard, setPokemonCard] = useState({});
@@ -30,8 +31,14 @@ export const PokemonCard = ({ pokemon }) => {
           <InfoCard>
             <Id>N°{pokemonCard.id}</Id>
             <Name>{pokemonCard.name}</Name>
+            <div>
+              {pokemonCard.types.map((type)=>{
+                return<img
+                src={getPokemonType(type.type.name)}
+                />
+              })}
+            </div>
           </InfoCard>
-
           <img
             width={100}
             src={pokemonCard.sprites.other["official-artwork"].front_default}
