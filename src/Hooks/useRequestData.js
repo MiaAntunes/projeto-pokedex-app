@@ -14,12 +14,11 @@ export const useRequestData = (url, initialState) => {
         try {
             const res = await axios
                 .get(url)
-            setData(res.data.results)
+            setData(res.data)
         } catch (error) {
             console.log(error.response)
         }
     }
-
     return [data, setData]
 }
 
