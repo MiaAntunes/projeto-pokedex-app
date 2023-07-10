@@ -14,8 +14,6 @@ export const PokeList = () => {
     setOpcaoSelecionada(event.target.value);
   };
 
-  console.log(pokemons)
-
   return (
     <div
       style={{
@@ -33,12 +31,25 @@ export const PokeList = () => {
       <Select id="opcoes" value={opcaoSelecionada} onChange={handleOpcaoChange}>
         <option value="">Todos os tipos</option>
       </Select>
-      {pokemons.results.map((poke) => {
+      {pokemons.count && pokemons.results.map((poke) => {
         return <PokemonCard pokemon={poke.name} />;
       })}
+      {pokemons.previous === null ?
       <LoadingMorePokemons
         more={pokemons.next}
-      ><p>More Pokemons</p></LoadingMorePokemons>
+        text = {"Mais"}
+      ></LoadingMorePokemons>
+      : <div>
+        <LoadingMorePokemons
+        more={pokemons.previous}
+        text = {"Menos"}
+      ></LoadingMorePokemons>
+      <LoadingMorePokemons
+        more={pokemons.next}
+        text = {"Mais"}
+      ></LoadingMorePokemons>
+      </div>
+    }
     </div>
-  );
+    );
 };

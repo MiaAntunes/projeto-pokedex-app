@@ -1,19 +1,23 @@
 import axios from "axios";
 import { baseUrl } from "../../Constants/baseUrl";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { goToPerfilPage } from "../../Router/Coordinator";
 import { useNavigate } from "react-router-dom";
 import { ContainerCard, Id, InfoCard, Name } from "./PokemonCardStyle";
 import { getPokemonType } from "../../Utils/getPokemonType";
+import { globalContext } from "../../Context/globalContext";
+
 
 export const PokemonCard = ({ pokemon }) => {
   const [pokemonCard, setPokemonCard] = useState({});
+
+  const {pokemons} = useContext(globalContext)
 
   const navigate = useNavigate();
 
   useEffect(() => {
     loadingCards();
-  }, []);
+  }, [pokemons]);
 
   const loadingCards = async () => {
     try {
