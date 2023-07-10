@@ -19,6 +19,7 @@ export const useRequestData = (url, initialState) => {
             console.log(error.response)
         }
     }
-    return [data, setData]
+
+    return [data, setData, loadingPokemons]
 }
 
