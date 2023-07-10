@@ -5,7 +5,7 @@ import {baseUrl} from "../Constants/baseUrl"
 export const GlobalState = ({children}) => {
     
     const [pokemons, setPokemons] = useRequestData(baseUrl, [])
-    
+
     const context = {
         pokemons,
         setPokemons
