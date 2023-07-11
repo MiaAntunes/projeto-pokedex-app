@@ -27,7 +27,9 @@ export const MiniImageEvolution = ({ name }) => {
             width={50}
             height={50}
             src={miniImage}
-            onClick={()=>goToPerfilPage(navigate, name)}
+            onClick={()=>
+                goToPerfilPage(navigate, name)
+            }
         />
     )
 }
