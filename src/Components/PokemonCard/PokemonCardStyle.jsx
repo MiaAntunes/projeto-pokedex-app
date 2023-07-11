@@ -47,7 +47,7 @@ export const ContainerImage = styled.div`
 `;
 
 export const PokemonImage = styled.img`
-  width: 110%;
+  width: 105%;
   position: absolute;
   z-index: 2;
 `;

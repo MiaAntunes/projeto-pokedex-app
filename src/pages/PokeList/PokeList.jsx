@@ -6,7 +6,7 @@ import {
   ContainerInputs,
   ContainerPokeList,
   Input,
-  Select
+  Select,
 } from "./PokeListStyle";
 import { LoadingMorePokemons } from "../../Components/LoadingMorePokemons/LoadingMorePokemons";
 
@@ -28,17 +28,17 @@ export const PokeList = () => {
           value={opcaoSelecionada}
           onChange={handleOpcaoChange}
         >
-          <option value="">Menor número</option>
-          <option value="">Maior número</option>
-          <option value="">A-Z</option>
-          <option value="">Z-A</option>
+          <option value="Menor número<">Menor número</option>
+          <option value="Maior número">Maior número</option>
+          <option value="A-Z">A-Z</option>
+          <option value="Z-A">Z-A</option>
         </Select>
         <Select
           id="opcoes"
           value={opcaoSelecionada}
           onChange={handleOpcaoChange}
         >
-          <option value="">Todos os tipos</option>
+          <option value="Todos os tipos">Todos os tipos</option>
         </Select>
       </ContainerInputs>
       {pokemons.previous === null ? (
