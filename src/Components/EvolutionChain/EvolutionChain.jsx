@@ -31,9 +31,11 @@ export const EvolutionChain = ({ name }) => {
             return "Friendship"
         } else if (evolutionChain.chain.evolves_to[0].evolution_details[0].item !== null) {
             return <StoneImage stone = {evolutionChain.chain.evolves_to[0].evolution_details[0].item.name}/>
-        } else {
+        } else if (evolutionChain.chain.evolves_to[0].evolution_details[0].held_item !== null) {
             return <StoneImage stone = {evolutionChain.chain.evolves_to[0].evolution_details[0].held_item.name}/>
-        }
+        } else if (evolutionChain.chain.evolves_to[0].evolution_details[0].known_move !== null) {
+            return evolutionChain.chain.evolves_to[0].evolution_details[0].known_move.name
+        } 
     }
 
     const evolutionLevelTwo = () => {
@@ -47,8 +49,10 @@ export const EvolutionChain = ({ name }) => {
             } else if (evolutionChain.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name === "trade") {
                 return "trade"
             }
-            else {
+            else if (evolutionChain.chain.evolves_to[0].evolves_to[0].evolution_details[0].held_item !== null) {
                 return <StoneImage stone = {evolutionChain.chain.evolves_to[0].evolves_to[0].evolution_details[0].held_item.name}/>
+            } else {
+                return <StoneImage stone = {evolutionChain.chain.evolves_to[0].evolves_to[0].evolution_details[0].known_move.name}/>
             }
         }
     }
@@ -67,6 +71,7 @@ export const EvolutionChain = ({ name }) => {
         })
         return stone
     }
+
 
     return (
         <p>

@@ -13,7 +13,7 @@ export const PerfilPage = () => {
 
     useEffect(() => {
         loadingPerfil(name)
-    }, [])
+    }, [pokemon])
 
     const loadingPerfil = async (name) => {
         try {

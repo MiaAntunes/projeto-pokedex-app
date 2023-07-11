@@ -17,6 +17,7 @@ import { getPokemonType } from "../../Utils/getPokemonType";
 import { globalContext } from "../../Context/globalContext";
 import { getVector } from "../../Utils/getPokemonVector";
 import Like from "../../assets/others/Like.png";
+import {goToPerfilPage} from "../../Router/Coordinator"
 
 export const PokemonCard = ({ pokemon }) => {
   const [pokemonCard, setPokemonCard] = useState({});
@@ -41,7 +42,7 @@ export const PokemonCard = ({ pokemon }) => {
   }
 
   const handleImageClick = () => {
-    goToPerfilPage(navigate, pokemonCard.name);
+    goToPerfilPage(navigate ,pokemonCard.name);
   };
 
   const typeImages = pokemonCard.types.map((type) => (
