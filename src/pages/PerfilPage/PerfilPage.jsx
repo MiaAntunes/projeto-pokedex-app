@@ -7,6 +7,8 @@ import { getPokemonType } from "../../Utils/getPokemonType";
 import { EvolutionChain } from "../../Components/EvolutionChain/EvolutionChain";
 import { SectionInfoDetails } from "./PerfilPageStyle";
 import { getVector } from "../../Utils/getPokemonVector";
+import { PokemonForm } from "../../Components/PokemonForm/PokemonForm";
+import { PokemonMoves } from "../../Components/PokemonMoves/PokemonMoves";
 
 export const PerfilPage = () => {
   const { name } = useParams();
@@ -32,7 +34,6 @@ export const PerfilPage = () => {
     try {
       const res = await axios.get(BASE_URL + name);
       setDescription(res.data.flavor_text_entries);
-      console.log(res.data);
     } catch (error) {
       console.log(error.response);
     }
@@ -80,6 +81,9 @@ export const PerfilPage = () => {
             </div>
           </SectionInfoDetails>
           <>
+            <PokemonForm name={pokemon.name} />
+          </>
+          <>
             {pokemon.types.map((type, index) => {
               return (
                 <Weaknesses key={index} type={type.type.name}></Weaknesses>
@@ -87,6 +91,22 @@ export const PerfilPage = () => {
             })}
           </>
           <EvolutionChain name={pokemon.name}></EvolutionChain>
+          <>
+          <h3>Movimentos</h3>
+          {/* defini por enquanto em 5 golpes até a estilização AHAHAH */}
+            {pokemon.moves.map((move, index) => {
+              return index < 5 && <PokemonMoves key={index}
+                move={move}
+              />
+            })}
+          </>
+          <h3>Estatisticas</h3>
+          {pokemon.stats.map((stat, index)=>{
+              return <div key={index}>
+                  {stat.stat.name}
+                  {stat.base_stat}
+              </div>
+          })}
         </>
       )}
     </div>
