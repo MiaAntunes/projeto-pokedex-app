@@ -1,13 +1,13 @@
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
 import { getPokemonType } from "../../Utils/getPokemonType";
 import { useParams } from "react-router-dom";
 
-
-export const Weaknesses = ({ type, condition }) => {
+export const Weaknesses = ({ type }) => {
   const [weak, setWeak] = useState({});
+  const [condition, setCondition] = useState("weak");
 
-  const { name } = useParams()
+  const { name } = useParams();
 
   useEffect(() => {
     loadingWeak(type);
@@ -22,28 +22,34 @@ export const Weaknesses = ({ type, condition }) => {
     }
   };
 
-  const returnData = (condition) => {
-    if (condition === 'weak') {
-      const res = weak.double_damage_from && weak.double_damage_from.map((damage, index) => {
-        return <img key={index} src={getPokemonType(damage.name)} />
-      })
-      return res
-    } else if (condition === 'strong') {
-      const res = weak.double_damage_from && weak.double_damage_to.map((damage, index) => {
-        return <img key={index} src={getPokemonType(damage.name)} />
-      })
-      return res
-    } else if (condition === 'immune') {
-      const res = weak.double_damage_from && weak.no_damage_from.map((damage, index) => {
-        return <img key={index} src={getPokemonType(damage.name)} />
-      })
-      return res
-  } 
-}
+  const handleChange = (event) => {
+    setCondition(event.target.value);
+  };
+
+  const getWeaknesses = (condition) => {
+    if (condition === "weak") {
+      return weak.double_damage_from?.map((damage, index) => (
+        <img key={index} src={getPokemonType(damage.name)} alt={damage.name} />
+      ));
+    } else if (condition === "strong") {
+      return weak.double_damage_to?.map((damage, index) => (
+        <img key={index} src={getPokemonType(damage.name)} alt={damage.name} />
+      ));
+    } else if (condition === "immune") {
+      return weak.no_damage_from?.map((damage, index) => (
+        <img key={index} src={getPokemonType(damage.name)} alt={damage.name} />
+      ));
+    }
+  };
 
   return (
-    <>
-        {returnData(condition)}
-    </>
+    <div>
+      <select value={condition} onChange={handleChange}>
+        <option value="weak">Fraco</option>
+        <option value="strong">Forte</option>
+        <option value="immune">Imune</option>
+      </select>
+      <div>{getWeaknesses(condition)}</div>
+    </div>
   );
 };

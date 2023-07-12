@@ -15,7 +15,7 @@ export const PerfilPage = () => {
 
   const [pokemon, setPokemon] = useState({});
   const [description, setDescription] = useState(null);
-  const [species, setSpecies] = useState({})
+  const [species, setSpecies] = useState({});
 
   useEffect(() => {
     loadingPerfil(name);
@@ -35,13 +35,19 @@ export const PerfilPage = () => {
     try {
       const res = await axios.get(BASE_URL + name);
       setDescription(res.data.flavor_text_entries);
-      setSpecies(res.data)
+      setSpecies(res.data);
     } catch (error) {
       console.log(error.response);
     }
   };
 
   const formattedId = String(pokemon.id).padStart(3, "0");
+
+  const [weaknessCondition, setWeaknessCondition] = useState("weak");
+
+  const handleWeaknessConditionChange = (event) => {
+    setWeaknessCondition(event.target.value);
+  };
 
   return (
     <div>
@@ -83,47 +89,33 @@ export const PerfilPage = () => {
               </div>
             </div>
           </SectionInfoDetails>
-          <>
-            <PokemonForm name={pokemon.name} />
-          </>
-          <h3>Fraco</h3>
-          <>
-            {pokemon.types.map((type, index) => {
-              return <Weaknesses key={index} type={type.type.name} condition = {'weak'}/>
-            })}
-          </>
-          <h3>Forte</h3>
-          <>
-            {pokemon.types.map((type, index) => {
-              return <Weaknesses key={index} type={type.type.name} condition = {'strong'}/>
-            })}
-          </>
-          <h3>Imune</h3>
-          <>
-            {pokemon.types.map((type, index) => {
-              return <Weaknesses key={index} type={type.type.name} condition = {'immune'}/>
-            })}
-          </>
-          <EvolutionChain name={pokemon.name}></EvolutionChain>
-          <>
-            {/* defini por enquanto em 5 golpes até a estilização AHAHAH */}
-            {pokemon.moves.map((move, index) => {
-              return index < 5 && <PokemonMoves key={index}
-                move={move}
+          <div>
+            {pokemon.types.map((type, index) => (
+              <Weaknesses
+                key={index}
+                type={type.type.name}
+                condition={weaknessCondition}
               />
-            })}
-          </>
+            ))}
+          </div>
+          <PokemonForm name={pokemon.name} />
+
+          <EvolutionChain name={pokemon.name}></EvolutionChain>
+
+          {/* defini por enquanto em 5 golpes até a estilização AHAHAH */}
+          {pokemon.moves.map((move, index) => {
+            return index < 5 && <PokemonMoves key={index} move={move} />;
+          })}
           <h1>Estátisticas</h1>
           {pokemon.stats.map((stat, index) => {
-            return <div key={index}>
-              {stat.stat.name}
-              {stat.base_stat}
-            </div>
+            return (
+              <div key={index}>
+                {stat.stat.name}
+                {stat.base_stat}
+              </div>
+            );
           })}
-
         </>
-
-
       )}
     </div>
   );
