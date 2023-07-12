@@ -5,6 +5,7 @@ import axios from "axios"
 import { Weaknesses } from "../../Components/Weaknesses/Weaknesses"
 import { getPokemonType } from "../../Utils/getPokemonType"
 import { EvolutionChain } from "../../Components/EvolutionChain/EvolutionChain"
+import { PokemonForm } from "../../Components/PokemonForm/PokemonForm"
 
 export const PerfilPage = () => {
     const { name } = useParams()
@@ -13,7 +14,7 @@ export const PerfilPage = () => {
 
     useEffect(() => {
         loadingPerfil(name)
-    }, [pokemon])
+    }, [])
 
     const loadingPerfil = async (name) => {
         try {
@@ -24,6 +25,7 @@ export const PerfilPage = () => {
             console.log(error.response)
         }
     }
+    console.log(pokemon.id && pokemon)
 
     return (
         <div>
@@ -47,6 +49,7 @@ export const PerfilPage = () => {
                             <p>{abilitie.ability.name}</p>
                         )
                     })}
+                    <PokemonForm name = {pokemon.name}/>
                     <>{pokemon.types.map((type) => {
                         return (
                             <Weaknesses
@@ -55,10 +58,7 @@ export const PerfilPage = () => {
                             </Weaknesses>
                         )
                     })}</>
-                    <EvolutionChain
-                    name = {pokemon.name}
-                    >
-                    </EvolutionChain>
+                    <EvolutionChain name = {pokemon.name}></EvolutionChain>
 
                 </>
             }

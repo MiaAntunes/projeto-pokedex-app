@@ -23,7 +23,6 @@ export const EvolutionChain = ({ name }) => {
         }
     }
 
-
     const evolutionLevelOne = () => {
         if (evolutionChain.chain.evolves_to[0].evolution_details[0].min_level !== null) {
             return evolutionChain.chain.evolves_to[0].evolution_details[0].min_level
