@@ -15,6 +15,7 @@ export const PerfilPage = () => {
 
   const [pokemon, setPokemon] = useState({});
   const [description, setDescription] = useState(null);
+  const [species, setSpecies] = useState({})
 
   useEffect(() => {
     loadingPerfil(name);
@@ -34,6 +35,7 @@ export const PerfilPage = () => {
     try {
       const res = await axios.get(BASE_URL + name);
       setDescription(res.data.flavor_text_entries);
+      setSpecies(res.data)
     } catch (error) {
       console.log(error.response);
     }
@@ -71,6 +73,7 @@ export const PerfilPage = () => {
               {description && (
                 <p>{description[8].flavor_text.replace(/\n/, "")}</p>
               )}
+              {species.id && <p>{species.genera[7].genus}</p>}
               <div>
                 <p>{pokemon.height}</p>
                 <p>{(pokemon.weight / 2.205).toFixed(1)} KG</p>
@@ -83,31 +86,44 @@ export const PerfilPage = () => {
           <>
             <PokemonForm name={pokemon.name} />
           </>
+          <h3>Fraco</h3>
           <>
             {pokemon.types.map((type, index) => {
-              return (
-                <Weaknesses key={index} type={type.type.name}></Weaknesses>
-              );
+              return <Weaknesses key={index} type={type.type.name} condition = {'weak'}/>
+            })}
+          </>
+          <h3>Forte</h3>
+          <>
+            {pokemon.types.map((type, index) => {
+              return <Weaknesses key={index} type={type.type.name} condition = {'strong'}/>
+            })}
+          </>
+          <h3>Imune</h3>
+          <>
+            {pokemon.types.map((type, index) => {
+              return <Weaknesses key={index} type={type.type.name} condition = {'immune'}/>
             })}
           </>
           <EvolutionChain name={pokemon.name}></EvolutionChain>
           <>
-          <h3>Movimentos</h3>
-          {/* defini por enquanto em 5 golpes até a estilização AHAHAH */}
+            {/* defini por enquanto em 5 golpes até a estilização AHAHAH */}
             {pokemon.moves.map((move, index) => {
               return index < 5 && <PokemonMoves key={index}
                 move={move}
               />
             })}
           </>
-          <h3>Estatisticas</h3>
-          {pokemon.stats.map((stat, index)=>{
-              return <div key={index}>
-                  {stat.stat.name}
-                  {stat.base_stat}
-              </div>
+          <h1>Estátisticas</h1>
+          {pokemon.stats.map((stat, index) => {
+            return <div key={index}>
+              {stat.stat.name}
+              {stat.base_stat}
+            </div>
           })}
+
         </>
+
+
       )}
     </div>
   );
