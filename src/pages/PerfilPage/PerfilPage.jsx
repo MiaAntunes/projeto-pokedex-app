@@ -55,15 +55,18 @@ export const PerfilPage = () => {
         <>
           <SectionInfoDetails>
             <div>
-              <img
-                src={getVector(pokemon.types[0].type.name)}
-                alt={pokemon.types[0].type.name}
-              />
-              <img
-                src={pokemon.sprites.other["official-artwork"].front_default}
-                alt={pokemon.name}
-              />
+              <div>
+                <img
+                  src={getVector(pokemon.types[0].type.name)}
+                  alt={pokemon.types[0].type.name}
+                />
+                <img
+                  src={pokemon.sprites.other["official-artwork"].front_default}
+                  alt={pokemon.name}
+                />
+              </div>
             </div>
+
             <div>
               <p>{pokemon.name}</p>
               <p>N°{formattedId}</p>
