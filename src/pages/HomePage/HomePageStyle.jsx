@@ -272,31 +272,31 @@ export const H2 = styled.p`
   }
   
   @media screen and (min-width: 1201px) and (max-width: 1400px){
-    font-size: 1.2em;
+    font-size: 1.25em;
   }
   
   @media screen and (min-width: 1401px) and (max-width: 1600px){
-    font-size: 1.2em;
+    font-size: 1.25em;
   }
   
   @media screen and (min-width: 1601px) and (max-width: 1800px){
-    font-size: 1.3em;
+    font-size: 1.35em;
   }
 
   @media screen and (min-width: 1801px) and (max-width: 2000px){
-    font-size: 1.4em;
+    font-size: 1.45em;
   }
  
   @media screen and (min-width: 2001px) and (max-width: 2500px){
-    font-size: 1.4em;
+    font-size: 1.45em;
   }
   
   @media screen and (min-width: 2501px) and (max-width: 3000px){
-    font-size: 1.4em;
+    font-size: 1.45em;
   }
   
   @media screen and (min-width: 3000px) {
-    font-size: 1.4em;
+    font-size: 1.45em;
   }
 `;
 
