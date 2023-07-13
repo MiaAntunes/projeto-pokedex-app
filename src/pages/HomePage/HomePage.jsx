@@ -1,10 +1,20 @@
 import banner from "../../assets/others/BannerComplete.png";
-import { ArticleMain, Banner, ButtonAllPokemons, ContainerMain, H1, H2 } from "./HomePageStyle";
+import banner2 from "../../assets/others/BannerComplete2.jpg"
+import {
+  ArticleMain,
+  BannerDesktop,
+  BannerMobile,
+  ButtonAllPokemons,
+  ContainerMain,
+  H1,
+  H2,
+  SectionHomePage,
+} from "./HomePageStyle";
 
 export const HomePage = () => {
   return (
-    <div>
-      <ContainerMain>
+    <ContainerMain>
+      <SectionHomePage>
         <ArticleMain>
           <H1>
             <strong>Encontre</strong> todos os seus <strong>Pokémons</strong>{" "}
@@ -16,8 +26,9 @@ export const HomePage = () => {
           </H2>
           <ButtonAllPokemons>Ver Pokémons</ButtonAllPokemons>
         </ArticleMain>
-        <Banner src={banner} alt="banner" />
-      </ContainerMain>
-    </div>
+        <BannerMobile src={banner} alt="banner" />
+        <BannerDesktop src={banner2} alt="banner" />
+      </SectionHomePage>
+    </ContainerMain>
   );
 };
