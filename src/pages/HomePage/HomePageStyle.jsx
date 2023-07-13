@@ -16,11 +16,11 @@ export const ContainerMain = styled.main`
   
   @media screen and (min-width: 1201px) and (max-width:2000px){
     max-width:100vw;
-    width: calc(100vw - 0.1vw);
+    width: 100vw;
   }
 
   @media screen and (min-width: 2001px) {
-    width: calc(100vw - .7vw);
+    width: 100vw;
   }
 
 `;
