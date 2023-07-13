@@ -1,12 +1,51 @@
 import styled from "styled-components";
 
 export const HeaderStyle = styled.header`
-  width: 100vw;
-  height: 8.3rem;
+  width:100%;
   background: #000029;
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @media screen and (max-width: 600px){
+    height: 20vh;
+  }
+  
+  @media screen and (min-width: 601px) and (max-width: 800px){
+
+  }
+  
+  @media screen and (min-width: 801px) and (max-width: 1000px){
+
+  }
+  
+  @media screen and (min-width: 1001px) and (max-width: 1200px){
+
+  }
+  
+  @media screen and (min-width: 1201px) and (max-width: 1400px){
+
+  }
+  
+  @media screen and (min-width: 1401px) and (max-width: 1600px){
+
+  }
+  
+  @media screen and (min-width: 1601px) and (max-width: 2000px){
+
+  }
+ 
+  @media screen and (min-width: 2001px) and (max-width: 2500px){
+
+  }
+  
+  @media screen and (min-width: 2501px) and (max-width: 3000px){
+
+  }
+  
+  @media screen and (min-width: 3000px) {
+
+  }
 `;
 
 export const NavBar = styled.button`
