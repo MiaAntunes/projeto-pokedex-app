@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContainerMain = styled.main`
   display: flex;
   min-height: 100vh ;
+  overflow-x: hidden;
 
   @media screen and  (max-width: 800px){
     width:100%;
