@@ -24,7 +24,14 @@ export const Header = () => {
             Pokédex
           </Link>
         </NavBar>
-        <NavBar>Regiões</NavBar>
+        <NavBar>
+          <Link
+            to="/region"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            Regiões
+          </Link>
+        </NavBar>
         <NavBar>Favoritos</NavBar>
         <NavBar>Login</NavBar>
       </nav>
