@@ -1,0 +1,14 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="iconoir:pokeball" clip-path="url(#clip0_446_442)">
+<g id="Group">
+<path id="Vector" d="M8.00016 14.6667C11.6822 14.6667 14.6668 11.682 14.6668 8.00001C14.6668 4.31801 11.6822 1.33334 8.00016 1.33334C4.31816 1.33334 1.3335 4.31801 1.3335 8.00001C1.3335 11.682 4.31816 14.6667 8.00016 14.6667Z" stroke="black" stroke-opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M8.00024 9.99977C8.53068 9.99977 9.03939 9.78906 9.41446 9.41398C9.78953 9.03891 10.0002 8.5302 10.0002 7.99977C10.0002 7.46934 9.78953 6.96063 9.41446 6.58556C9.03939 6.21048 8.53068 5.99977 8.00024 5.99977C7.46981 5.99977 6.9611 6.21048 6.58603 6.58556C6.21096 6.96063 6.00024 7.46934 6.00024 7.99977C6.00024 8.5302 6.21096 9.03891 6.58603 9.41398C6.9611 9.78906 7.46981 9.99977 8.00024 9.99977V9.99977Z" stroke="black" stroke-opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M1.3335 7.99985H6.00016M10.0002 7.99985H14.6668" stroke="black" stroke-opacity="0.6"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_446_442">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

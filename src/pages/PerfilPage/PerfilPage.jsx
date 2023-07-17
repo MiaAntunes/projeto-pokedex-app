@@ -1,14 +1,23 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { BASE_URL, baseUrl } from "../../Constants/baseUrl";
 import axios from "axios";
+import { BASE_URL, baseUrl } from "../../Constants/baseUrl";
 import { Weaknesses } from "../../Components/Weaknesses/Weaknesses";
 import { getPokemonType } from "../../Utils/getPokemonType";
 import { EvolutionChain } from "../../Components/EvolutionChain/EvolutionChain";
-import { SectionInfoDetails } from "./PerfilPageStyle";
 import { getVector } from "../../Utils/getPokemonVector";
 import { PokemonForm } from "../../Components/PokemonForm/PokemonForm";
 import { PokemonMoves } from "../../Components/PokemonMoves/PokemonMoves";
+import weight from "../../assets/others/weight.svg";
+import height from "../../assets/others/height.svg";
+import abilities from "../../assets/others/abilities.svg";
+import category from "../../assets/others/category.svg";
+import {
+  ArticleTudo,
+  DetailsMain,
+  PokemonDetailsContainer,
+  SectionInfoDetails,
+} from "../PerfilPage/PerfilPageStyle";
 
 export const PerfilPage = () => {
   const { name } = useParams();
@@ -18,11 +27,11 @@ export const PerfilPage = () => {
   const [species, setSpecies] = useState({});
 
   useEffect(() => {
-    loadingPerfil(name);
-    descriptionPerfil(name);
+    loadPokemonData(name);
+    loadDescription(name);
   }, [name]);
 
-  const loadingPerfil = async (name) => {
+  const loadPokemonData = async (name) => {
     try {
       const res = await axios.get(baseUrl + name);
       setPokemon(res.data);
@@ -31,7 +40,7 @@ export const PerfilPage = () => {
     }
   };
 
-  const descriptionPerfil = async (name) => {
+  const loadDescription = async (name) => {
     try {
       const res = await axios.get(BASE_URL + name);
       setDescription(res.data.flavor_text_entries);
@@ -43,83 +52,143 @@ export const PerfilPage = () => {
 
   const formattedId = String(pokemon.id).padStart(3, "0");
 
-  const [weaknessCondition, setWeaknessCondition] = useState("weak");
+  const renderDescription = () => {
+    if (description) {
+      return description[3].flavor_text.replace(/\n/, "").replace(/\f/, "");
+    }
+    return null;
+  };
 
-  const handleWeaknessConditionChange = (event) => {
-    setWeaknessCondition(event.target.value);
+  const renderTypes = () => {
+    return pokemon.types.map((type, index) => (
+      <img
+        className="type"
+        key={index}
+        src={getPokemonType(type.type.name)}
+        alt={type.type.name}
+      />
+    ));
+  };
+
+  const renderStats = () => {
+    return pokemon.stats.map((stat, index) => (
+      <div key={index}>
+        {stat.stat.name}: {stat.base_stat}
+      </div>
+    ));
+  };
+
+  const renderAbilities = () => {
+    return pokemon.abilities.map((ability, index) => (
+      <p className="resultContainer" key={index}>
+        {ability.ability.name}
+      </p>
+    ));
   };
 
   return (
-    <div>
+    <>
       {pokemon.id && (
-        <>
-          <SectionInfoDetails>
-            <div>
-              <div>
-                <img
-                  src={getVector(pokemon.types[0].type.name)}
-                  alt={pokemon.types[0].type.name}
-                />
-                <img
-                  src={pokemon.sprites.other["official-artwork"].front_default}
-                  alt={pokemon.name}
-                />
-              </div>
-            </div>
-
-            <div>
-              <p>{pokemon.name}</p>
-              <p>N°{formattedId}</p>
-              {pokemon.types.map((type, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={getPokemonType(type.type.name)}
-                    alt={type.type.name}
-                  />
-                );
-              })}
-              {description && (
-                <p>{description[8].flavor_text.replace(/\n/, "")}</p>
-              )}
-              {species.id && <p>{species.genera[7].genus}</p>}
-              <div>
-                <p>{pokemon.height}</p>
-                <p>{(pokemon.weight / 2.205).toFixed(1)} KG</p>
-                {pokemon.abilities.map((abilitie, index) => {
-                  return <p key={index}>{abilitie.ability.name}</p>;
-                })}
-              </div>
-            </div>
-          </SectionInfoDetails>
-          <div>
-            {pokemon.types.map((type, index) => (
-              <Weaknesses
-                key={index}
-                type={type.type.name}
-                condition={weaknessCondition}
+        <DetailsMain type={pokemon.types[0].type.name}>
+          <ArticleTudo>
+            <article>
+              <img
+                src={getVector(pokemon.types[0].type.name)}
+                alt={pokemon.types[0].type.name}
               />
-            ))}
-          </div>
-          <PokemonForm name={pokemon.name} />
+              <img
+                src={pokemon.sprites.other["official-artwork"].front_default}
+                alt={pokemon.name}
+              />
+            </article>
 
-          <EvolutionChain name={pokemon.name}></EvolutionChain>
-
-          {/* defini por enquanto em 5 golpes até a estilização AHAHAH */}
-          {pokemon.moves.map((move, index) => {
-            return index < 5 && <PokemonMoves key={index} move={move} />;
-          })}
-          <h1>Estátisticas</h1>
-          {pokemon.stats.map((stat, index) => {
-            return (
-              <div key={index}>
-                {stat.stat.name}
-                {stat.base_stat}
+            <SectionInfoDetails>
+              <div>
+                <h2>{pokemon.name}</h2>
+                <p className="id">N°{formattedId}</p>
+                <div>{renderTypes()}</div>
+                {/* <p className="description">{renderDescription()}</p> */}
               </div>
-            );
-          })}
-        </>
+
+              {/* <PokemonDetailsContainer>
+                <div className="container">
+                  <div className="div">
+                    <div className="title">
+                      <img src={weight} alt="" />
+                      <p className="titleContainer">Peso</p>
+                    </div>
+                    <p className="resultContainer">
+                      {(pokemon.weight / 10).toFixed(1)} kg
+                    </p>
+                  </div>
+                  <div className="div">
+                    <div className="title">
+                      <img src={category} alt="" />
+                      <p className="titleContainer">Categoria</p>
+                    </div>
+                    {species.id && (
+                      <p className="resultContainer">
+                        {species.genera[7].genus.replace(/Pokémon/, "")}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="container">
+                  <div className="div">
+                    <div className="title">
+                      <img src={height} alt="" />
+                      <p className="titleContainer">Altura</p>
+                    </div>
+                    <p className="resultContainer">
+                      {(pokemon.height / 10).toFixed(1)} m
+                    </p>
+                  </div>
+                  <div className="div">
+                    <div className="title">
+                      <img src={abilities} alt="" />
+                      <p className="titleContainer">Habilidade</p>
+                    </div>
+                    <p>{renderAbilities()}</p>
+                  </div>
+                </div>
+              </PokemonDetailsContainer> */}
+            </SectionInfoDetails>
+          </ArticleTudo>
+
+          {/* <section>
+            <section>
+              <article>
+                {pokemon.types.map((type, index) => (
+                  <Weaknesses
+                    key={index}
+                    type={type.type.name}
+                    condition="weak"
+                  />
+                ))}
+              </article>
+              <article>
+                <PokemonForm name={pokemon.name} />
+              </article>
+            </section>
+
+            <section>
+              <article>
+                <EvolutionChain name={pokemon.name} />
+              </article>
+              <article>
+                {pokemon.moves.slice(0, 5).map((move, index) => (
+                  <PokemonMoves key={index} move={move} />
+                ))}
+              </article>
+            </section>
+
+            <section>
+              <h3>Estátisticas</h3>
+              <div>{renderStats()}</div>
+            </section>
+          </section> */}
+        </DetailsMain>
       )}
-    </div>
+    </>
   );
 };

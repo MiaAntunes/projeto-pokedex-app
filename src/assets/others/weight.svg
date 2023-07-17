@@ -1,0 +1,29 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="16" height="16" fill="#F5F5F5"/>
+<g id="Desktop Detalhes do Pok&#195;&#169;mon" clip-path="url(#clip0_0_1)">
+<rect width="1512" height="4465" transform="translate(-595 -527)" fill="white"/>
+<g id="home" clip-path="url(#clip1_0_1)">
+<rect width="1520" height="754" transform="translate(-609 -422)" fill="white"/>
+<g id="Descri&#195;&#167;&#195;&#163;o">
+<line id="Line 5" y1="15.5" x2="328" y2="15.5" stroke="black" stroke-opacity="0.05"/>
+</g>
+<g id="Peso, Altura">
+<g id="Peso">
+<g id="Frame 1000002496">
+<g id="la:weight-hanging">
+<path id="Vector" d="M8 2.50003C7.1775 2.50003 6.5 3.17753 6.5 4.00003C6.5 4.17603 6.537 4.34203 6.594 4.50003H4.094L4.0155 4.90653L2.5155 12.4065L2.5 12.453V13.5H13.5V12.453L13.4845 12.4065L11.9845 4.90653L11.906 4.50003H9.406C9.46606 4.34006 9.49786 4.17088 9.5 4.00003C9.5 3.17753 8.8225 2.50003 8 2.50003ZM8 3.50003C8.2815 3.50003 8.5 3.71903 8.5 4.00003C8.5 4.28153 8.281 4.50003 8 4.50003C7.7185 4.50003 7.5 4.28103 7.5 4.00003C7.5 3.71853 7.719 3.50003 8 3.50003ZM4.906 5.50003H11.094L12.5 12.5H3.5L4.906 5.50003Z" fill="black" fill-opacity="0.6"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_1">
+<rect width="1512" height="4465" fill="white" transform="translate(-595 -527)"/>
+</clipPath>
+<clipPath id="clip1_0_1">
+<rect width="1520" height="754" fill="white" transform="translate(-609 -422)"/>
+</clipPath>
+</defs>
+</svg>

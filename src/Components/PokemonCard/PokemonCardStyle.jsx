@@ -4,7 +4,7 @@ import { getColors, getColorsCard } from "../../Utils/getPokemonColor";
 export const ContainerCard = styled.div`
   display: flex;
   width: 25rem;
-  height: 8rem;
+  height: 9rem;
   border-radius: 0.9375rem;
   background: ${({ type }) => getColorsCard(type)};
   justify-content: space-between;
@@ -30,7 +30,7 @@ export const Id = styled.p`
 export const Name = styled.p`
   color: #000;
   font-family: Poppins;
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   font-weight: 600;
   text-transform: capitalize;
   margin: 0.1rem;
@@ -47,7 +47,7 @@ export const ContainerImage = styled.div`
 `;
 
 export const PokemonImage = styled.img`
-  width: 105%;
+  width: 100%;
   position: absolute;
   z-index: 2;
 `;
