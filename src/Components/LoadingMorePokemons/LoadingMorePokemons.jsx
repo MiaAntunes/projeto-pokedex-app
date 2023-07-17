@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useContext } from "react"
 import { globalContext } from "../../Context/globalContext"
+import { ButtonLoadingMore } from "./LoadingMorePokemonsStyled"
 
 export const LoadingMorePokemons = ({ more, text }) => {
 
@@ -19,11 +20,11 @@ export const LoadingMorePokemons = ({ more, text }) => {
     
     return (
         <>
-            <button
+            <ButtonLoadingMore
             onClick={()=>{
                 loadingMorePokemon(more)
             }}
-            >{text}</button>
+            >{text}</ButtonLoadingMore>
         </>
     )
 }

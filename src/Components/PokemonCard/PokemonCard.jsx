@@ -10,7 +10,8 @@ import {
   LikeImage,
   Name,
   PokemonImage,
-  Type,
+  TypeContainer,
+  TypeImage,
   VectorImage,
 } from "./PokemonCardStyle";
 import { getPokemonType } from "../../Utils/getPokemonType";
@@ -46,7 +47,7 @@ export const PokemonCard = ({ pokemon }) => {
   };
 
   const typeImages = pokemonCard.types.map((type) => (
-    <img
+    <TypeImage
       key={type.type.name}
       src={getPokemonType(type.type.name)}
       alt={type.type.name}
@@ -60,7 +61,7 @@ export const PokemonCard = ({ pokemon }) => {
       <InfoCard type={pokemonCard.types[0].type.name}>
         <Id>N°{formattedId}</Id>
         <Name>{pokemonCard.name}</Name>
-        <Type>{typeImages}</Type>
+        <TypeContainer>{typeImages}</TypeContainer>
       </InfoCard>
       <ContainerImage type={pokemonCard.types[0].type.name}>
         <LikeImage src={Like} alt="Like" />
