@@ -1,6 +1,7 @@
 import { Form } from "../../Components/Form/Form"
 import { useForm } from "../../Hooks/useForm"
 import login from "../../assets/personage/login.png"
+import { Link } from "react-router-dom";
 
 
 export const LoginPage = () =>{
@@ -14,7 +15,7 @@ export const LoginPage = () =>{
     console.log()
     return(
         <section>
-            <img src={login}  />
+            <img src={cad}  />
             <div>
                 <h1>Entrar</h1>
                 <form onSubmit={sendLogin}>
@@ -35,8 +36,9 @@ export const LoginPage = () =>{
                     type="password" 
                     placeholder="********"/>
                     
-                    <button>Enviar</button>
+                    <button >Enviar</button>
                 </form>
+                <Link to="/cadastro" >Fazer minha conta</Link>
             </div>
         </section>
     )

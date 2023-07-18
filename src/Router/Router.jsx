@@ -5,6 +5,7 @@ import { HomePage } from "../pages/HomePage/HomePage";
 import { Header } from "../Components/Header/Header"
 import { Regions } from "../pages/Regions/Regions";
 import { LoginPage } from "../pages/LoginPage/LoginPage";
+import { SignUpPage } from "../pages/SignUpPage/SignUpPage";
 
 export const Router = () => {
   return (
@@ -16,6 +17,7 @@ export const Router = () => {
         <Route path="/perfil/:name" element={<PerfilPage />} />
         <Route path="/region" element={<Regions/>}/>
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/cadastro" element={<SignUpPage/>}/>
       </Routes>
     </BrowserRouter>
   );
