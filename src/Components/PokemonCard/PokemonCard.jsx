@@ -18,11 +18,11 @@ import { getPokemonType } from "../../Utils/getPokemonType";
 import { globalContext } from "../../Context/globalContext";
 import { getVector } from "../../Utils/getPokemonVector";
 import Like from "../../assets/others/Like.png";
-import {goToPerfilPage} from "../../Router/Coordinator"
+import { goToPerfilPage } from "../../Router/Coordinator"
 
 export const PokemonCard = ({ pokemon }) => {
   const [pokemonCard, setPokemonCard] = useState({});
-  const { pokemons } = useContext(globalContext);
+  const { pokemons, favorite, setFavorite } = useContext(globalContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,8 +43,12 @@ export const PokemonCard = ({ pokemon }) => {
   }
 
   const handleImageClick = () => {
-    goToPerfilPage(navigate ,pokemonCard.name);
+    goToPerfilPage(navigate, pokemonCard.name);
   };
+
+  const handleFavoriteClick = (poke) => {
+    setFavorite([...favorite, poke])
+  }
 
   const typeImages = pokemonCard.types.map((type) => (
     <TypeImage
@@ -65,7 +69,10 @@ export const PokemonCard = ({ pokemon }) => {
         <button style={{fontSize:"0.5rem"}} onClick={handleImageClick}>Detalhes</button>
       </InfoCard>
       <ContainerImage type={pokemonCard.types[0].type.name}>
-        <LikeImage src={Like} alt="Like" />
+        <LikeImage
+          onClick={() => handleFavoriteClick(pokemonCard)}
+          src={Like}
+          alt="Like" />
         <PokemonImage
           src={pokemonCard.sprites.front_default}
           alt={pokemonCard.name}

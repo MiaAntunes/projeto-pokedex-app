@@ -305,7 +305,7 @@ export const LikeImage = styled.img`
   top: 0;
   right: 0;
   margin: 0.5rem;
-  /* z-index: 3; */
+  z-index: 3;
   
   @media screen and (max-width: 600px) {
     width:1.3em;
