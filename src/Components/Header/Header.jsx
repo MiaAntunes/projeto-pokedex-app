@@ -33,7 +33,11 @@ export const Header = () => {
           </Link>
         </NavBar>
         <NavBar>Favoritos</NavBar>
-        <NavBar>Login</NavBar>
+        <NavBar>
+          <Link to="/login" style={{ textDecoration: "none", color: "inherit" }}>
+            Login
+          </Link>
+        </NavBar>
       </nav>
     </HeaderStyle>
   );

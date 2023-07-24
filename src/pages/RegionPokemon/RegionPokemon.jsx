@@ -7,7 +7,7 @@ import { LoadingMorePokemons } from "../../Components/LoadingMorePokemons/Loadin
 
 export const RegionPokemon = () => {
 
-    const { region } = useParams()
+    const { name } = useParams()
 
     const [opcaoSelecionada, setOpcaoSelecionada] = useState("")
 
@@ -24,7 +24,7 @@ export const RegionPokemon = () => {
     const loadingRegionPokedex = async () => {
         try {
             const res = await axios
-                .get(`https://pokeapi.co/api/v2/region/${region}`)
+                .get(`https://pokeapi.co/api/v2/region/${name}`)
             const res2 = await axios
                 .get(res.data.pokedexes[0].url)
             setPokedexregion(res2.data)
