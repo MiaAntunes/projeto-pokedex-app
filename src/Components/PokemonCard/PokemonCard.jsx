@@ -66,6 +66,7 @@ export const PokemonCard = ({ pokemon }) => {
         <Id>N°{formattedId}</Id>
         <Name>{pokemonCard.name}</Name>
         <TypeContainer>{typeImages}</TypeContainer>
+        <button style={{fontSize:"0.5rem"}} onClick={handleImageClick}>Detalhes</button>
       </InfoCard>
       <ContainerImage type={pokemonCard.types[0].type.name}>
         <LikeImage
@@ -75,7 +76,6 @@ export const PokemonCard = ({ pokemon }) => {
         <PokemonImage
           src={pokemonCard.sprites.front_default}
           alt={pokemonCard.name}
-          onClick={handleImageClick}
         />
         <VectorImage
           src={getVector(pokemonCard.types[0].type.name)}

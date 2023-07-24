@@ -327,4 +327,3 @@ export const LikeImage = styled.img`
     width:1.9em;
   }
 `;
-
