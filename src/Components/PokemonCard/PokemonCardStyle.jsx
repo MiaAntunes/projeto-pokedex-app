@@ -3,13 +3,7 @@ import { getColors, getColorsCard } from "../../Utils/getPokemonColor";
 
 export const ContainerCard = styled.div`
   display: flex;
-<<<<<<< HEAD
-  width: 25rem;
-  height: 9rem;
-  border-radius: 0.9375rem;
-=======
   box-shadow: 2px 2px 0px 3px #5c5c5cce;
->>>>>>> 2a3f2947ccf23d5f66d374acc2e6969319784b34
   background: ${({ type }) => getColorsCard(type)};
   justify-content: space-between;
 
@@ -102,7 +96,7 @@ export const Id = styled.p`
 export const Name = styled.p`
   color: #000;
   font-family: Poppins;
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   font-weight: 600;
   text-transform: capitalize;
 
@@ -233,10 +227,6 @@ export const ContainerImage = styled.div`
 `;
 
 export const PokemonImage = styled.img`
-<<<<<<< HEAD
-  width: 100%;
-=======
->>>>>>> 2a3f2947ccf23d5f66d374acc2e6969319784b34
   position: absolute;
   /* z-index: 2; */
 
@@ -337,4 +327,3 @@ export const LikeImage = styled.img`
     width:1.9em;
   }
 `;
-

@@ -13,10 +13,27 @@ import height from "../../assets/others/height.svg";
 import abilities from "../../assets/others/abilities.svg";
 import category from "../../assets/others/category.svg";
 import {
-  ArticleTudo,
-  DetailsMain,
-  PokemonDetailsContainer,
-  SectionInfoDetails,
+  Container,
+  ContentWrapper,
+  PokemonImageWrapper,
+  Wrapper,
+  ContainerId,
+  ContainerName,
+  PokemonImage,
+  PokemonContainer,
+  PokemonImageCircle,
+  InformationWrapper,
+  ButtonGroup,
+  TabButton,
+  DataWrapper,
+  BiographyWrapper,
+  DescriptionWrapper,
+  TitleData,
+  Description,
+  ImageData,
+  TitleDataPokemon,
+  ResultDataPokemon,
+  ResultDataTitle,
 } from "../PerfilPage/PerfilPageStyle";
 
 export const PerfilPage = () => {
@@ -25,6 +42,7 @@ export const PerfilPage = () => {
   const [pokemon, setPokemon] = useState({});
   const [description, setDescription] = useState(null);
   const [species, setSpecies] = useState({});
+  const [activeTab, setActiveTab] = useState("Biografia");
 
   useEffect(() => {
     loadPokemonData(name);
@@ -86,109 +104,218 @@ export const PerfilPage = () => {
     ));
   };
 
-  return (
-    <>
-      {pokemon.id && (
-        <DetailsMain type={pokemon.types[0].type.name}>
-          <ArticleTudo>
-            <article>
-              <img
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+  };
+
+  const renderContent = () => {
+    if (!pokemon.id) {
+      return null;
+    }
+
+    return (
+      <Container>
+        <Wrapper type={pokemon.types[0].type.name}>
+          <ContentWrapper>
+            <PokemonImageWrapper>
+              <ContainerId>N°{formattedId}</ContainerId>
+              <ContainerName>{pokemon.name}</ContainerName>
+            </PokemonImageWrapper>
+            <PokemonContainer>
+              <PokemonImageCircle
+                type={pokemon.types[0].type.name}
                 src={getVector(pokemon.types[0].type.name)}
                 alt={pokemon.types[0].type.name}
               />
-              <img
+              <PokemonImage
                 src={pokemon.sprites.other["official-artwork"].front_default}
                 alt={pokemon.name}
               />
-            </article>
-
-            <SectionInfoDetails>
-              <div>
-                <h2>{pokemon.name}</h2>
-                <p className="id">N°{formattedId}</p>
-                <div>{renderTypes()}</div>
-                {/* <p className="description">{renderDescription()}</p> */}
-              </div>
-
-              {/* <PokemonDetailsContainer>
-                <div className="container">
-                  <div className="div">
-                    <div className="title">
-                      <img src={weight} alt="" />
-                      <p className="titleContainer">Peso</p>
+            </PokemonContainer>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                position: "relative",
+                bottom: "3rem",
+                gap: "3rem",
+              }}
+            >
+              {renderTypes()}
+            </div>
+          </ContentWrapper>
+          <InformationWrapper type={pokemon.types[0].type.name}>
+            <ButtonGroup>
+              <TabButton
+                type={pokemon.types[0].type.name}
+                className={activeTab === "Biografia" ? "active" : ""}
+                onClick={() => handleTabClick("Biografia")}
+              >
+                Biografia
+              </TabButton>
+              <TabButton
+                type={pokemon.types[0].type.name}
+                className={activeTab === "Evoluções" ? "active" : ""}
+                onClick={() => handleTabClick("Evoluções")}
+              >
+                Evoluções
+              </TabButton>
+              <TabButton
+                type={pokemon.types[0].type.name}
+                className={activeTab === "Estatísticas" ? "active" : ""}
+                onClick={() => handleTabClick("Estatísticas")}
+              >
+                Estatísticas
+              </TabButton>
+              <TabButton
+                type={pokemon.types[0].type.name}
+                className={activeTab === "Movimentos" ? "active" : ""}
+                onClick={() => handleTabClick("Movimentos")}
+              >
+                Movimentos
+              </TabButton>
+            </ButtonGroup>
+            <DataWrapper>
+              {activeTab === "Biografia" && (
+                <BiographyWrapper>
+                  <TitleData>Pokemon Dados</TitleData>
+                  <DescriptionWrapper>
+                    <Description>{renderDescription()}</Description>
+                  </DescriptionWrapper>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "1rem",
+                        }}
+                      >
+                        <ImageData src={weight} alt="Peso" />
+                        <TitleDataPokemon>Peso</TitleDataPokemon>
+                      </div>
+                      <ResultDataPokemon>
+                        <ResultDataTitle>
+                          {(pokemon.weight / 10).toFixed(1)} kg
+                        </ResultDataTitle>
+                      </ResultDataPokemon>
                     </div>
-                    <p className="resultContainer">
-                      {(pokemon.weight / 10).toFixed(1)} kg
-                    </p>
-                  </div>
-                  <div className="div">
-                    <div className="title">
-                      <img src={category} alt="" />
-                      <p className="titleContainer">Categoria</p>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "1rem",
+                        }}
+                      >
+                        <ImageData src={category} alt="Categoria" />
+                        <TitleDataPokemon>Categoria</TitleDataPokemon>
+                      </div>
+                      {species.id && (
+                        <ResultDataPokemon>
+                          <ResultDataTitle>
+                            {species.genera[7].genus.replace(/Pokémon/, "")}
+                          </ResultDataTitle>
+                        </ResultDataPokemon>
+                      )}
                     </div>
-                    {species.id && (
-                      <p className="resultContainer">
-                        {species.genera[7].genus.replace(/Pokémon/, "")}
-                      </p>
-                    )}
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "1rem",
+                        }}
+                      >
+                        <ImageData src={height} alt="Altura" />
+                        <TitleDataPokemon>Altura</TitleDataPokemon>
+                      </div>
+                      <ResultDataPokemon>
+                        <ResultDataTitle>
+                          {(pokemon.height / 10).toFixed(1)} m
+                        </ResultDataTitle>
+                      </ResultDataPokemon>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "1rem",
+                        }}
+                      >
+                        <ImageData src={abilities} alt="habilidades" />
+                        <TitleDataPokemon>Habilidade</TitleDataPokemon>
+                      </div>
+                      <ResultDataPokemon>
+                        <ResultDataTitle>{renderAbilities()}</ResultDataTitle>
+                      </ResultDataPokemon>
+                    </div>
                   </div>
+                </BiographyWrapper>
+              )}
+              {activeTab === "Evoluções" && (
+                <div>
+                  <EvolutionChain name={pokemon.name} />
                 </div>
-                <div className="container">
-                  <div className="div">
-                    <div className="title">
-                      <img src={height} alt="" />
-                      <p className="titleContainer">Altura</p>
-                    </div>
-                    <p className="resultContainer">
-                      {(pokemon.height / 10).toFixed(1)} m
-                    </p>
-                  </div>
-                  <div className="div">
-                    <div className="title">
-                      <img src={abilities} alt="" />
-                      <p className="titleContainer">Habilidade</p>
-                    </div>
-                    <p>{renderAbilities()}</p>
-                  </div>
+              )}
+              {activeTab === "Estatísticas" && (
+                <div>
+                  <h3>Estátisticas</h3>
+                  <div>{renderStats()}</div>
+                  {pokemon.types.map((type, index) => (
+                    <Weaknesses
+                      key={index}
+                      type={type.type.name}
+                      condition="weak"
+                    />
+                  ))}
+                  <PokemonForm name={pokemon.name} />{" "}
                 </div>
-              </PokemonDetailsContainer> */}
-            </SectionInfoDetails>
-          </ArticleTudo>
+              )}
+              {activeTab === "Movimentos" && (
+                <div>
+                  {pokemon.moves.slice(0, 5).map((move, index) => (
+                    <PokemonMoves key={index} move={move} />
+                  ))}
+                </div>
+              )}
+            </DataWrapper>
+          </InformationWrapper>
+        </Wrapper>
+      </Container>
+    );
+  };
 
-          {/* <section>
-            <section>
-              <article>
-                {pokemon.types.map((type, index) => (
-                  <Weaknesses
-                    key={index}
-                    type={type.type.name}
-                    condition="weak"
-                  />
-                ))}
-              </article>
-              <article>
-                <PokemonForm name={pokemon.name} />
-              </article>
-            </section>
-
-            <section>
-              <article>
-                <EvolutionChain name={pokemon.name} />
-              </article>
-              <article>
-                {pokemon.moves.slice(0, 5).map((move, index) => (
-                  <PokemonMoves key={index} move={move} />
-                ))}
-              </article>
-            </section>
-
-            <section>
-              <h3>Estátisticas</h3>
-              <div>{renderStats()}</div>
-            </section>
-          </section> */}
-        </DetailsMain>
-      )}
-    </>
-  );
+  return <div>{renderContent()}</div>;
 };
