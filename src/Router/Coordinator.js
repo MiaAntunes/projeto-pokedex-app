@@ -10,3 +10,7 @@ export const goToLoginPage = (navigate) => {
     return navigate('/login')
 }
 
+export const goToSignUpPage = (navigate) => {
+    return navigate('/cadastro')
+}
+
